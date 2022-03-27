@@ -5,10 +5,140 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alpha Shop cart</title>
+  <script src="https://kit.fontawesome.com/b4ca5465c3.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="dist/main.css">
 </head>
 <body>
-  
+  <main>
+    <h1>結帳</h1>
+    <div class="container">
+      <section class="checkout-process">                      
+        <!-- stepper -->
+        <div class="stepper-wrapper">
+          <div class="step-item ">
+            <div class="circle"></div>
+            <div class="step-title ">
+              寄送地址
+            </div>
+          </div>         
+          <div class="step-item">
+            <div class="circle"></div>
+            <div class="step-title ">
+              運送方式
+            </div>
+            <span class="step-line first"></span>
+          </div>         
+          <div class="step-item">
+            <div class="circle"></div>
+            <div class="step-title ">
+              付款資訊
+            </div>  
+            <span class="step-line second"></span>
+          </div>
+        </div>
+        <!-- from container -->
+        <div class="form-wrapper">
+          <div class="form-address mt-8">
+            <form action="" id="step-address">
+              <h1>寄送地址</h1>
+              <div class="form-row name-box">
+                <div class="form-item ">
+                  <label for="title">稱謂</label>
+                  <div class="select-wrapper">
+                    <select name="title" id="title">
+                      <option value="mr">先生</option>
+                      <option value="ms">小姐</option>
+                    </select>
+                  </div>                                      
+                </div>
+                <div class="form-item">
+                  <label for="">姓名</label>
+                  <input type="text" name=" name" id="name" placeholder="請輸入姓名">
+                </div>
+              </div>
+              <div class="form-row phone">
+                <label for="phone">電話</label>
+                <input type="number" name="name" id="phone" placeholder="請輸入行動電話">
+              </div>
+              <div class="form-row email">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="請輸入電子郵件">
+              </div>
+              <div class="form-row city">
+                <label for="city">縣市</label>
+                <div class="select-wrapper">
+                  <select name="city" id="city">
+                    <option value="" >請選擇縣市</option>
+                    <option value="taipei">台北</option>
+                    <option value="kaohsiung">高雄</option>
+                  </select>
+                </div>                
+              </div>
+              <div class="form-row address-box">
+                <label for="address">地址</label>
+                <input type="text" name="address" id="address" placeholder="請輸入地址">
+              </div>
+            </form>
+          </div>
+          <div class="form-delivery mt-8">
+            <form action="" id="step-delivery">
+              <h1>運送方式</h1>
+              <div class="form-row d-flex">
+                  <div class="input-wrapper">
+                    <input type="radio" name="normal" id="normal" value="normal">
+                  </div>                 
+                  <div class="label-wrapper">
+                    <label for="normal">標準運送</label>  
+                    <label for="normal">約3~7個工作天</label>
+                  </div>
+                  <label class="fee" for="normal">免費</label>
+              </div>                                
+              <div class="form-row d-flex">
+                <div class="input-wrapper">
+                  <input type="radio" name="normal" id="dhl" value="dhl">
+                </div>                
+                <div class="label-wrapper">
+                  <label for="dhl">DHL貨運</label>
+                  <label for="dhl">48小時內送達</label>
+                </div>
+                <label class="fee" for="dhl">$500</label>
+              </div>                               
+            </form>      
+          </div>
+          <div class="form-payment mt-8">
+            <form action="" id="step-payment">
+              <div class="form-row card-owner">
+                <label for="owner-name">持卡人姓名</label>
+                <input type="text" name="owner-name" id="owner-name" placeholder="John Doe">
+              </div>
+              <div class="form-row number">
+                <label for="card-number">卡號</label>
+                <input type="text" name="card-number" id="card-number" placeholder="1111 2222 3333 4444">
+              </div>
+              <div class="form-row card-detail-box d-flex">
+                <div class="form-item">
+                  <label for="valid-date">有效期限</label>
+                  <input type="text" name="valid-date" id="valid-date" placeholder="MM/YY">
+                </div>
+                <div class="form-item">
+                  <label for="safety-num">CVC/CCV</label>
+                  <input type="text" name="safety-num" id="safety-num" placeholder="123" >
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- button wrapper -->         
+        <div class="btn-wrapper">
+          <button class="btn-item pre-btn"><i class="fa-solid fa-arrow-left-long mr-4"></i>上一步 </button>
+          <button class="btn-item next-btn active-btn">下一步 <i class="fa-solid fa-arrow-right-long ml-4"></i> </button>
+        </div>
+      </section>
+      <section class="cart">
+        
+      </section>
+    </div>
+  </main>
   <script src="dist/bundle.js"></script>
 </body>
 </html>

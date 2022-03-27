@@ -56,8 +56,15 @@ button {
 
 // variable
 $main-background-color: #FFFF;
+$label-font-color: #808080;
 $step-btn-color: #F67599;
 $quantity-btn: #F0F0F5;
+$stepper-circle-bk: #2A2A2A;
+$black: black;
+$white: #FFFF;
+$light-gray:#5E5E5E;
+$dark-gray: #4A4A4A;
+$pale-gray:#F0F0F5;
 
 .d-none {
   display: none;
@@ -135,7 +142,9 @@ $spacers: (
   3: (
     $spacer * 0.75
   ),
-  4: $spacer,
+  4: (
+    $spacer * 1
+  ),
   5: (
     $spacer * 1.25
   ),
@@ -165,7 +174,7 @@ $spacers: (
       #{$prop}-bottom: $val;
     }
     .#{$abbrev}r-#{$number} {
-      #{$prop}-top: $val;
+      #{$prop}-right: $val;
     }
     .#{$abbrev}y-#{$number} {
       #{$prop}-top: $val;
@@ -177,7 +186,333 @@ $spacers: (
     }
   }
 }
+
+@mixin stepperNum($num){
+  @for $i from 1 through $num {
+     &:nth-child(#{$i}) .circle::after {
+      content:"#{$i}";
+      display:block;
+      color: $black;
+      transform: translateY(50%);
+    }    
+  }
+}
+
+%input-style {
+  width: 100%;
+  height: 50px;
+  border: 1px solid $light-gray;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 1em; 
+  &:hover, &:focus{
+    border-width: 2px;
+  }
+}
+%label-style {
+  display:block;
+  padding-bottom: 5px;
+  font-size: 12px;
+  color: $label-font-color;
+}
+
+
 // css setting star here
 body {
   background-color: $main-background-color;
+  
+}
+.container {
+  display: flex;
+  flex-flow: column;
+}
+main {
+  width: 100%;
+  margin-top: 72px; 
+  padding: 0 15px;
+  height: 100%;
+}
+h1{
+  font-size: 24px;
+}
+// label {
+//   display: block;
+//   font-size: 12px;
+//   color: $label-font-color;
+// }
+.checkout-process, .stepper-wrapper, .form-wrapper {
+  width: 100%;
+}
+// checkout stepper
+.stepper-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  margin-top: 1.5rem;
+  line-height: 100%;
+  position: relative;
+  .step-item{   
+    display: flex;
+    align-items: center;
+    position: relative;
+    @include stepperNum(3); 
+    &:nth-child(3) {
+      justify-content: flex-end;
+    } 
+    &:nth-child(2) {
+      justify-content: center;
+    }  
+  }
+ .circle {  
+   width: 32px;
+   height: 32px;
+   border: 1px solid $black;
+   border-radius: 23px;
+   text-align: center;
+ }
+ .step-title {
+   display: none;
+   padding: 5px;
+ }
+ .step-line {
+  position: absolute;
+  height: 1px;
+  width: 60px;
+  background-color: $black;
+  &.first {
+    left: -50%;
+  }
+  &.second {
+    left: -15%;
+  }    
+ }
+
+}
+// from address
+.form-wrapper{ 
+  border: 1px solid red;
+  height: 100%;
+  flex:1;
+  .form-row {
+    margin-top: 1rem;
+  }
+  .select-wrapper{
+    position: relative;
+    select{
+      cursor: pointer;   
+      -webkit-appearance: none; 
+      background-color: transparent;
+      overflow-x: hidden; 
+    }
+     &::after {
+      content: "";
+      border-style: solid;
+      border-width: 8px 8px 0 8px;
+      border-color: $light-gray transparent;
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-25%);
+      z-index: -1;     
+    }               
+  } 
+  .form-address {  
+    input, select{
+      @extend %input-style;
+    }
+    label{
+      @extend %label-style;
+    }
+    .form-row {
+      width: 100%;   
+      &.name-box {
+        display: grid;
+        grid-template-columns: 40% 55%;
+        grid-gap: 5%;       
+      }
+    }
+  }
+  // form-delivery
+  .form-delivery {
+    .label-wrapper{
+      display: flex;
+      flex-flow: column;
+    }   
+    .form-row {
+      border: 1px solid $pale-gray;
+      border-radius: 5px;
+      max-width: 465px;
+      height: 60px;
+      align-items: center;
+      
+     //input radio樣式
+      input[type = "radio"]{
+        margin: 20px;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border:  1px solid $light-gray;
+        border-radius: 50%; 
+        cursor: pointer;       
+        &:checked {          
+          border: 6px solid $dark-gray;
+        }
+      } 
+      .label-wrapper{
+        flex: 1;
+        label{
+          cursor: pointer;
+          &:nth-child(2){
+            font-size: 12px;
+          }
+        }
+      }
+      .fee, .input-wrapper{
+        flex-basis: 50px;
+      }
+      &:hover {
+        border-color: $light-gray;
+        border-width: 2px;
+      }
+      // dhl粗體
+      &:nth-child(3){
+        .label-wrapper{
+          label:nth-child(1){
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+  // form-payment
+  .form-payment {
+    input {
+      @extend %input-style;
+    }
+    label {
+      @extend %label-style;
+    }
+    .card-owner, .number{
+      max-width: 350px;
+    }
+    .card-detail-box{
+      justify-content: space-between;
+     
+      .form-item {
+        flex-basis: 45%;
+        &:nth-child(1) > input{
+          -webkit-appearance: none;
+          &:invalid {
+            color: $light-gray;
+          }
+        }
+      }      
+    }
+  }
+  // button style
+}
+%button-style {
+  font-size: 14px;
+  font-weight: 500;
+  flex-basis:100%;
+  height: 46px;
+  border-radius: 5px;
+  cursor: pointer;   
+}
+.btn-wrapper{
+  position:relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  button{
+    @extend %button-style;
+    &.pre-btn {
+      text-align: left;
+    }
+    i {
+      font-size: 20px;
+      transform: translateY(10%);     
+    }
+  }  
+  
+}
+.active-btn {
+  background-color: $step-btn-color;
+  color:white;
+}
+
+
+
+// media query
+@media screen and (min-width: 375px) {
+  body {
+    max-width: 1400px; 
+    margin: 0 auto;
+  }
+  .container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 55% 5% 40%;
+  }
+  .stepper-wrapper {
+    .step-title {
+    display: block;
+    line-height: 100%;
+   } 
+   .step-line {
+     &.first {
+    left: -30%;
+    }
+    &.second {
+    left: -5%;
+    }
+   }
+  }
+  // form address
+  .form-wrapper {
+    #step-address {
+      display: grid;
+      grid-template-columns: repeat(6,1fr);
+      grid-template-rows: 30px;
+      grid-gap: 0.5rem 1rem;
+      h1 {
+        grid-column: 1/7;
+      }
+      .form-row {
+        &.name-box {
+          grid-column: 1/7;
+        }
+        &.phone {
+          grid-column: 1/4;
+        }
+        &.email {
+          grid-column: 4/7;
+        }
+        &.city {
+          grid-column: 1/3;
+        }
+        &.address-box {
+          grid-column: 3/7;
+
+        }
+      }
+    }
+    
+  }
+
+  .cart {
+    grid-column: 3/4;
+    border: 1px solid;
+  } 
+  .btn-wrapper { 
+    button{
+      flex-basis: 40%;
+      // width: 40%;
+    }   
+    .first-step-btn{
+      position: absolute;
+      right: 0;
+      left: 60%;
+    }  
+  }
+
 }
