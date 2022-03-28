@@ -28,6 +28,13 @@ a:focus {
   text-decoration: none;
 }
 
+li {
+  list-style: none;
+}
+a {
+  cursor: pointer;
+}
+
 html{
   height: 100%;
 }
@@ -59,12 +66,13 @@ $main-background-color: #FFFF;
 $label-font-color: #808080;
 $step-btn-color: #F67599;
 $quantity-btn: #F0F0F5;
-$stepper-circle-bk: #2A2A2A;
+$dark-dark-gray: #2A2A2A;
 $black: black;
 $white: #FFFF;
 $light-gray:#5E5E5E;
 $dark-gray: #4A4A4A;
 $pale-gray:#F0F0F5;
+$quantity-btn:#F0F0F5;
 
 .d-none {
   display: none;
@@ -211,35 +219,122 @@ $spacers: (
 }
 %label-style {
   display:block;
-  padding-bottom: 5px;
+  padding-bottom: 8px;
   font-size: 12px;
   color: $label-font-color;
+}
+%button-style {
+  font-size: 14px;
+  font-weight: 500;
+  flex-basis:100%;
+  height: 46px;
+  border-radius: 5px;
+  cursor: pointer;   
 }
 
 
 // css setting star here
 body {
   background-color: $main-background-color;
-  
+  margin: 0 auto;
+  padding: 15px;
+}
+header {
+  max-width: 1400px;
+  padding: 0 15px;
+  height: 60px;
+}
+.nav{
+  width: 100%;
+  position: relative;
+  .nav-wrapper{
+    display: flex;
+    a {
+      color: $dark-dark-gray;
+      cursor: pointer;
+    }
+    .hamburger-box {
+      flex-basis: 20px;
+      label {
+        cursor: pointer;
+      }
+    }
+    // hamburger checked
+    input[type="checkbox"] {
+      display: none; 
+      &:checked ~ .nav-toggle-list {
+        transform: scale(1,1);
+        li, .tool-group {
+          opacity: 1;
+          transition: opacity .3s ease-out .2s;
+        }
+        .hidden {
+          display: none;
+        }
+      } 
+    }   
+    .nav-toggle-list {
+      position: absolute;
+      width:100vw;
+      top:100%;    
+      left: -10%;
+      z-index: 99;
+      background-color: $main-background-color;     
+      height: 100vh;
+      transform: scale(1,0);
+      transform-origin: top;
+      transition: transform .3s ease-out ;
+      li, .tool-group{
+          opacity: 0;
+        }
+      li {
+        text-align: center;
+        line-height: 72px;
+        border-bottom: 1px solid $pale-gray;    
+      }   
+      .toggle-list-tool-container{
+        .tool-group {
+          display: flex;
+          justify-content: center;
+          a {
+            margin: 20px;
+          }
+        }
+      }
+    }
+    .brand-container{
+      flex:1;
+      padding-left: 25%;
+      .brand-img{
+        margin: 0 auto;
+      }
+      img:nth-child(1) {
+        width: 24px;
+        height: 24px;
+      }
+      img:nth-child(2) {
+        width: 105px;
+        height: 15px;
+        color: red;
+      }
+    }
+  }
 }
 .container {
   display: flex;
   flex-flow: column;
+  padding-top: 32px;
 }
 main {
   width: 100%;
   margin-top: 72px; 
   padding: 0 15px;
   height: 100%;
+  h1{
+  font-size: 32px;
 }
-h1{
-  font-size: 24px;
 }
-// label {
-//   display: block;
-//   font-size: 12px;
-//   color: $label-font-color;
-// }
+
 .checkout-process, .stepper-wrapper, .form-wrapper {
   width: 100%;
 }
@@ -248,6 +343,7 @@ h1{
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   margin-top: 1.5rem;
+  padding-top: 10px;
   line-height: 100%;
   position: relative;
   .step-item{   
@@ -287,13 +383,13 @@ h1{
  }
 
 }
-// from address
+// form style
 .form-wrapper{ 
-  border: 1px solid red;
-  height: 100%;
-  flex:1;
+  .checkout-process{
+    flex:1;
+  }  
   .form-row {
-    margin-top: 1rem;
+    margin-top: 1.1rem;
   }
   .select-wrapper{
     position: relative;
@@ -316,6 +412,7 @@ h1{
     }               
   } 
   .form-address {  
+    margin-top: 50px;
     input, select{
       @extend %input-style;
     }
@@ -333,6 +430,7 @@ h1{
   }
   // form-delivery
   .form-delivery {
+    margin-top: 60px;
     .label-wrapper{
       display: flex;
       flex-flow: column;
@@ -385,6 +483,7 @@ h1{
   }
   // form-payment
   .form-payment {
+    margin-top: 60px;
     input {
       @extend %input-style;
     }
@@ -410,19 +509,16 @@ h1{
   }
   // button style
 }
-%button-style {
-  font-size: 14px;
-  font-weight: 500;
-  flex-basis:100%;
-  height: 46px;
-  border-radius: 5px;
-  cursor: pointer;   
-}
+// button style
 .btn-wrapper{
   position:relative;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid $pale-gray;
+  height: 100px;
+  padding-top: 38px;
   button{
     @extend %button-style;
     &.pre-btn {
@@ -439,20 +535,89 @@ h1{
   background-color: $step-btn-color;
   color:white;
 }
-
-
+// cart style
+.cart {
+  border: 1px solid $pale-gray;
+  border-radius: 5px;
+  padding: 1rem 1rem 0 1rem;
+  background-color: $main-background-color;
+  width: 100%;
+  h1 {
+    display: none;
+    line-height: 88px;
+    font-size: 18px;
+  }
+  .cart-wrapper {
+    height: 100%;   
+  }
+  .cart-item{
+    display: grid;
+    grid-template-columns: 100px 1fr;  
+    margin-bottom: 34px;
+    .product-img{
+      width: 100px;
+      height: 100px;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .product-detail {
+    display: flex;   
+    flex-flow: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: end; 
+    .form-group{
+      width: 100%;
+    }   
+  }
+  // quantity input form
+  .input-content {
+    justify-content: flex-end;
+    > .input-quantity-control{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: $quantity-btn;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 1px 1px 2px gray inset;
+      }
+    }
+     input[type = "number"] {
+      appearance: none;
+      width: 53px;
+      border: none;
+      text-align: center;
+    }
+  
+  }
+  .shipping, .total {
+    border-top: 1px solid $pale-gray;
+    height: 70px;
+    padding-top: 16px;
+  }
+}
 
 // media query
 @media screen and (min-width: 375px) {
   body {
-    max-width: 1400px; 
-    margin: 0 auto;
+    max-width: 1400px;     
   }
   .container {
     width: 100%;
     display: grid;
-    grid-template-columns: 55% 5% 40%;
+    grid-template-columns: 50% 10% 40%;
+    grid-template-rows: 480px 100px;
+    .checkout-process{
+      max-height: 440px;
+    }
   }
+  // stepper style
   .stepper-wrapper {
     .step-title {
     display: block;
@@ -472,9 +637,8 @@ h1{
     #step-address {
       display: grid;
       grid-template-columns: repeat(6,1fr);
-      grid-template-rows: 30px;
       grid-gap: 0.5rem 1rem;
-      h1 {
+      h2 {
         grid-column: 1/7;
       }
       .form-row {
@@ -498,14 +662,31 @@ h1{
     }
     
   }
-
+// cart style
   .cart {
     grid-column: 3/4;
-    border: 1px solid;
+    grid-row: 1/3;    
+    h1{
+      display: block;
+    }
+    .cart-item {
+      margin-bottom: 34px;
+    }
+    .product-detail{
+      flex-flow: row;
+      align-items: flex-start;
+      text-align: start;
+      flex:1 1;
+      .input-content {
+        justify-content: flex-start;
+      }
+    }
   } 
+// button style 
   .btn-wrapper { 
+    grid-column: 1/2;
     button{
-      flex-basis: 40%;
+      flex-basis: 35%;
       // width: 40%;
     }   
     .first-step-btn{

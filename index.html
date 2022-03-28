@@ -9,12 +9,72 @@
   <link rel="stylesheet" href="dist/main.css">
 </head>
 <body>
+  <header>
+    <nav class="nav">
+      <div class="nav-wrapper">
+        <div class="hamburger-box">
+          <label for="hamburger">
+            <img src="Vector.png" alt="">
+          </label>         
+        </div>
+        <input type="checkbox" id="hamburger">
+        <div class="nav-toggle-list">
+          <div class="list-container">
+            <ul>
+              <li class="list-item">
+                <a href="">男款</a>
+              </li>
+              <li class="list-item">
+                <a href="">女款</a>
+              </li>
+              <li class="list-item">
+                <a href="">最新消息</a>
+              </li>
+              <li class="list-item hidden">
+                <a href="">客製商品</a>
+              </li>
+              <li class="list-item">
+                <a href="">聯絡我們</a>
+              </li>
+              <li class="list-item">
+                <a href="">客製商品</a>
+              </li>
+              <li class="list-item hidden">
+                <a href="">聯絡我們</a>
+              </li>
+            </ul>
+          </div>
+          <div class="toggle-list-tool-container">
+            <div class="tool-group">
+              <a href=""><img src="/search.png" alt=""></a>
+              <a href=""><img src="/cart.png" alt=""></a>
+              <a href=""><img src="/dark_mode.png" alt=""></a>
+            </div>
+          </div>
+        </div>
+        <div class="brand-container">
+          <div class="brand-img">
+            <img src="/logo.png" alt="logo-img" class="logo">
+            <img src="/ALPHA Shop_black.png" alt="brand-name" class="brand">
+          </div>
+        </div>
+        <div class="nav-tool-container d-none">
+          <div class="tool-group">
+            <a href=""><img src="/search.png" alt=""></a>
+            <a href=""><img src="/cart.png" alt=""></a>
+            <a href=""><img src="/dark_mode.png" alt=""></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
   <main>
     <h1>結帳</h1>
     <div class="container">
+      <!-- checkout  -->
       <section class="checkout-process">                      
         <!-- stepper -->
-        <div class="stepper-wrapper">
+        <div class="stepper-wrapper mt-8">
           <div class="step-item ">
             <div class="circle"></div>
             <div class="step-title ">
@@ -37,10 +97,10 @@
           </div>
         </div>
         <!-- from container -->
-        <div class="form-wrapper">
-          <div class="form-address mt-8">
+        <div class="form-wrapper" >
+          <div class="form-address ">
             <form action="" id="step-address">
-              <h1>寄送地址</h1>
+              <h2>寄送地址</h2>
               <div class="form-row name-box">
                 <div class="form-item ">
                   <label for="title">稱謂</label>
@@ -80,9 +140,9 @@
               </div>
             </form>
           </div>
-          <div class="form-delivery mt-8">
+          <div class="form-delivery mt-8 d-none">
             <form action="" id="step-delivery">
-              <h1>運送方式</h1>
+              <h2>運送方式</h2>
               <div class="form-row d-flex">
                   <div class="input-wrapper">
                     <input type="radio" name="normal" id="normal" value="normal">
@@ -105,8 +165,9 @@
               </div>                               
             </form>      
           </div>
-          <div class="form-payment mt-8">
+          <div class="form-payment mt-8 d-none">
             <form action="" id="step-payment">
+              <h2>付款資訊</h2>
               <div class="form-row card-owner">
                 <label for="owner-name">持卡人姓名</label>
                 <input type="text" name="owner-name" id="owner-name" placeholder="John Doe">
@@ -127,16 +188,65 @@
               </div>
             </form>
           </div>
-        </div>
-        <!-- button wrapper -->         
-        <div class="btn-wrapper">
-          <button class="btn-item pre-btn"><i class="fa-solid fa-arrow-left-long mr-4"></i>上一步 </button>
-          <button class="btn-item next-btn active-btn">下一步 <i class="fa-solid fa-arrow-right-long ml-4"></i> </button>
-        </div>
+        </div>                      
       </section>
-      <section class="cart">
-        
+      <!-- cart -->
+      <section class="cart mt-8">
+        <div class="form-wrapper">
+          <h1>購物籃</h1>
+          <div class="cart-wrapper">
+            <form action="">
+              <div class="cart-list d-flex flex-column">
+                <div class="cart-item mb-4" data-id="1">
+                  <div class="product-img">
+                    <img src="Block2x1.png" alt="">
+                  </div>                  
+                  <div class="product-detail ml-4">
+                    <div class="form-group">
+                      <label for="id-1-quantity">破壞補丁修身牛仔褲</label>
+                      <div class="input-content d-flex mt-4">
+                        <div class="input-quantity-control quantity-min">-</div>
+                        <input type="number" min="0" name="id-1-quantity" id="id-1-quantity" class="quantity">
+                        <div class="input-quantity-control quantity-plus">+</div>
+                      </div>
+                    </div>  
+                    <div class="price">$3,999</div>
+                  </div>                  
+                </div>
+                <div class="cart-item mb-4" data-id="2">
+                  <div class="product-img">
+                    <img src="Block2x2.png" alt="">
+                  </div>                 
+                  <div class="product-detail ml-4">
+                    <div class="form-group">
+                      <label for="id-2-quantity">刷色直筒牛仔褲</label>
+                      <div class="input-content d-flex mt-4">
+                        <div class="input-quantity-control quantity-min">-</div>
+                        <input type="number" min="0" name="id-2-quantity" id="id-2-quantity" class="quantity">
+                        <div class="input-quantity-control quantity-plus">+</div>
+                      </div>
+                    </div>
+                    <div class="price">$1,299</div>
+                  </div>                 
+                </div>
+              </div>
+              <div class="shipping d-flex justify-content-between">
+                <p>運費</p>
+                <p>免費</p>
+              </div>
+              <div class="total d-flex justify-content-between">
+                <p>小計</p>
+                <p>$5,298</p>
+              </div>              
+            </form>            
+          </div>
+        </div>        
       </section>
+      <!-- button -->
+      <div class="btn-wrapper">
+        <button class="btn-item pre-btn"><i class="fa-solid fa-arrow-left-long mr-4"></i>上一步 </button>
+        <button class="btn-item next-btn active-btn">下一步 <i class="fa-solid fa-arrow-right-long ml-4"></i> </button>
+      </div>
     </div>
   </main>
   <script src="dist/bundle.js"></script>
