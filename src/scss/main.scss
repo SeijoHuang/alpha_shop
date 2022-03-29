@@ -198,7 +198,6 @@ $spacers: (
      &:nth-child(#{$i}) .circle::after {
       content:"#{$i}";
       display:block;
-      color: $black;
       transform: translateY(50%);
     }    
   }
@@ -352,13 +351,25 @@ main {
     display: flex;
     align-items: center;
     position: relative;
-    @include stepperNum(3); 
+    @include stepperNum(3);
+    color: $black; 
     &:nth-child(3) {
       justify-content: flex-end;
     } 
     &:nth-child(2) {
       justify-content: center;
-    }  
+    }
+    &.step-active {
+      > .circle{
+        background-color: $dark-dark-gray;
+        color: white;
+      }     
+    } 
+    &.checked {
+      > .circle::after {
+        content:"\2714";
+      }
+    } 
   }
  .circle {  
    width: 32px;
@@ -373,7 +384,7 @@ main {
  }
  .step-line {
   position: absolute;
-  height: 1px;
+  height: 2px;
   width: 60px;
   background-color: $black;
   &.first {
@@ -574,6 +585,9 @@ main {
     text-align: end; 
     .form-group{
       width: 100%;
+    }
+    .price {
+      font-weight: 600;
     }   
   }
   // quantity input form
@@ -595,13 +609,17 @@ main {
       width: 53px;
       border: none;
       text-align: center;
-    }
-  
+    }  
   }
   .shipping, .total {
     border-top: 1px solid $pale-gray;
     height: 70px;
     padding-top: 16px;
+  }
+  .shipping {
+    p:nth-child(2){
+      font-weight: 600;
+    }
   }
 }
 // footer
@@ -640,9 +658,7 @@ footer {
       }
     }
 
-  } 
- 
-
+  }  
 }
 
 // media query

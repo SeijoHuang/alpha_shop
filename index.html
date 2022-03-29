@@ -95,8 +95,8 @@
         <section class="checkout-process">
           <!-- stepper -->
           <div class="stepper-wrapper mt-8">
-            <div class="step-item ">
-              <div class="circle"></div>
+            <div class="step-item step-active ">
+              <div class="circle "></div>
               <div class="step-title ">
                 寄送地址
               </div>
@@ -118,7 +118,7 @@
           </div>
           <!-- from container -->
           <div class="form-wrapper">
-            <div class="form-address ">
+            <div class="form-row-container form-address ">
               <form action="" id="step-address">
                 <h2>寄送地址</h2>
                 <div class="form-row name-box">
@@ -160,7 +160,7 @@
                 </div>
               </form>
             </div>
-            <div class="form-delivery mt-8 d-none">
+            <div class="form-row-container form-delivery mt-8 d-none">
               <form action="" id="step-delivery">
                 <h2>運送方式</h2>
                 <div class="form-row d-flex">
@@ -185,7 +185,7 @@
                 </div>
               </form>
             </div>
-            <div class="form-payment mt-8 d-none">
+            <div class="form-row-container form-payment mt-8 d-none">
               <form action="" id="step-payment">
                 <h2>付款資訊</h2>
                 <div class="form-row card-owner">
@@ -264,14 +264,13 @@
         </section>
         <!-- button -->
         <div class="btn-wrapper">
-          <button class="btn-item pre-btn"><i class="fa-solid fa-arrow-left-long mr-4"></i>上一步 </button>
-          <button class="btn-item next-btn active-btn">下一步 <i class="fa-solid fa-arrow-right-long ml-4"></i> </button>
+          <button class="btn-item pre-btn d-none"><i class="fa-solid fa-arrow-left-long mr-4"></i>上一步 </button>
+          <button class="btn-item next-btn active-btn first-step-btn">下一步 <i class="fa-solid fa-arrow-right-long ml-4"></i> </button>
         </div>
       </div>
     </main>
   </div>
   
-
   <footer>
     <div class="footer-container">
       <div class="items-wrapper">
@@ -319,5 +318,6 @@
     
   </footer>
   <script src="dist/bundle.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>

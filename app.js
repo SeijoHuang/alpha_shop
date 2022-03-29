@@ -13,33 +13,30 @@ function nextHandler(){
   current++
   toggleBtn()
     // 隱藏前一頁 form[current] add d-none
-    form[prev].classList.add('d-none')
+  form[prev].classList.add('d-none')
     // step[current] add checked  
-    step[prev].classList.add('checked')
+  step[prev].classList.add('checked')
     // current + 1 前進一頁     
-    step[current].classList.add('step-active')
+  step[current].classList.add('step-active')
     // 顯示當前頁 form[current] remove d-none
-    form[current].classList.remove('d-none')
+  form[current].classList.remove('d-none')
     // step[current] add .active 
-    step[current].classList.add('active')
+  step[current].classList.add('active')
   } 
-
 // click prev button
 function preHandler(){
-  if (prev < 0) return
-// 隱藏當前頁 form[current] add d-none
+  if (current < 0) return
+// 隱藏當前頁 
   form[current].classList.add('d-none')
-// step [current] remove checked & .active
+// 當前step取消打勾和反黑 
   step[current].classList.remove('checked', 'step-active')
-  // step[current].classList.remove('step-active')
-  // 回前一頁 current - 1 
+//回前一頁 current - 1 
   current--
-  prev = current
   toggleBtn()
-// form[current] remove d-none
-  form[prev].classList.remove('d-none')
-// step[current] remove checked
-  step[prev].classList.remove('checked')
+// 顯示前一頁
+  form[current].classList.remove('d-none')
+// step進度取消打勾 
+  step[current].classList.remove('checked')
 }
 // button切換
 function toggleBtn(){
@@ -47,6 +44,7 @@ function toggleBtn(){
     // 當到最後一頁時 ，next btn 顯示“確認訂單” 
     case 0:
       preBtn.classList.add('d-none')
+      nextBtn.classList.add('first-step-btn')
       nextBtn.innerHTML = '下一頁'
       break;
     case form.length -1 :
@@ -54,7 +52,7 @@ function toggleBtn(){
       break;  
     default :
       nextBtn.innerHTML = '下一頁'
-      preBtn.classList.remove('d-none')
+      preBtn.classList.remove('d-none', 'first-step-btn')      
   }
 }
 
