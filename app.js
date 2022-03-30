@@ -1,14 +1,11 @@
 const form = document.querySelectorAll('.form-row-container')
-console.log(form)
 const step = document.querySelectorAll('.step-item')
-console.log(step)
-const nextBtn = document.querySelector('.next-btn')
-const preBtn = document.querySelector('.pre-btn')
 let current = 0
 let prev = 0
-const quantity = document.querySelector("quantity");
-const input = [...document.querySelectorAll(".quantity")];
-const inputContainers = [...document.querySelectorAll(".input-container")];
+const quantity = document.querySelector("quantity")
+const input = [...document.querySelectorAll(".quantity")]
+const inputContainers = [...document.querySelectorAll(".input-container")]
+const itemPrice = [...document.querySelectorAll(".price")]
 
 // click next button
 function nextHandler(){
@@ -42,15 +39,15 @@ function preHandler(){
 // step進度取消打勾 
   step[current].classList.remove('checked')
 }
-// button切換
+// button狀態切換
 function toggleBtn(){
   switch(current) {
-    // 當到最後一頁時 ，next btn 顯示“確認訂單” 
     case 0:
       preBtn.classList.add('d-none')
       nextBtn.classList.add('first-step-btn')
       nextBtn.innerHTML = '下一頁'
       break;
+    // 當到最後一頁時 ，next btn 顯示“確認訂單”
     case form.length -1 :
       nextBtn.innerHTML = '確認訂單'
       break;  
@@ -61,25 +58,64 @@ function toggleBtn(){
 }
 
 // quantity control
+// 綁上監聽器 & bind the event
+// 數量增減
 ; (function addListener() {
   inputContainers.forEach((container) => {
-    container.addEventListener("click", add);
-  });
-})()
+    container.addEventListener("click", add)
+  })
+  })()
+// input監聽
+; (function addInputListener() {
+  input.forEach((i) => i.addEventListener("change", inputChange))
+  })()
 
+// 點擊按鈕數量增減、單品金額增減
 function add({ target }) {
   if (!target.matches(".input-quantity-control")) return;
-  const targetInput = input.find((input) => input.dataset.id === target.dataset.id);
-  let value = Number(targetInput.value);
+  const targetInput = input.find(
+    (input) => input.dataset.id === target.dataset.id)
+  const targetPriceContainer = itemPrice.find(
+    (price) => price.dataset.id === target.dataset.id
+  )
+  const targetPrice = Number(target.dataset.price)
+  let value = Number(targetInput.value)
+  let targetTotal = 0
+  // 點擊 + 或 - 調整數量
   if (target.matches(".quantity-plus")) {
-    targetInput.value = value + 1;
+    value++
+    targetInput.value = value;
   } else if (target.matches(".quantity-min")) {
     if (value <= 0) return;
-    targetInput.value = value - 1;
+    value--
+    targetInput.value = value;
   }
+  // target總金額更新
+  targetTotal = targetPrice * value
+  targetPriceContainer.innerHTML = `${targetTotal}`
+  renderTotalPrice()
 }
 
+// 點擊或在input直接輸入數量時金額跟著調整
+function inputChange({ target }) {
+  let total = 0;
+  const price = target.dataset.price;
+  const quantity = Number(target.value);
+  const targetTotalContainer = itemPrice.find(
+    (price) => price.dataset.id === target.dataset.id
+  );
+  total = price * quantity;
+  targetTotalContainer.innerHTML = `${total}`;
+  renderTotalPrice();
+}
 
-// bind the event
-nextBtn.addEventListener('click', nextHandler)
-preBtn.addEventListener('click', preHandler)
+// 總金額小計
+function renderTotalPrice() {
+  const totalBox = document.querySelector(".total");
+  let total = 0;
+  itemPrice.forEach((item) => {
+    const itemPriceTotal = Number(item.textContent) || 0;
+    total += itemPriceTotal;
+  });
+  totalBox.textContent = `$${total}`;
+}
