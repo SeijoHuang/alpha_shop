@@ -1,5 +1,7 @@
 const form = document.querySelectorAll('.form-row-container')
 const step = document.querySelectorAll('.step-item')
+const nextBtn = document.querySelector('.next-btn')
+const preBtn = document.querySelector('.pre-btn')
 let current = 0
 let prev = 0
 const quantity = document.querySelector("quantity")
@@ -119,3 +121,7 @@ function renderTotalPrice() {
   });
   totalBox.textContent = `$${total}`;
 }
+
+// bind the event
+nextBtn.addEventListener('click', nextHandler)
+preBtn.addEventListener('click', preHandler)
