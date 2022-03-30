@@ -6,6 +6,10 @@ const nextBtn = document.querySelector('.next-btn')
 const preBtn = document.querySelector('.pre-btn')
 let current = 0
 let prev = 0
+const quantity = document.querySelector("quantity");
+const input = [...document.querySelectorAll(".quantity")];
+const inputContainers = [...document.querySelectorAll(".input-container")];
+
 // click next button
 function nextHandler(){
   if(current === form.length - 1) return
@@ -53,6 +57,25 @@ function toggleBtn(){
     default :
       nextBtn.innerHTML = '下一頁'
       preBtn.classList.remove('d-none', 'first-step-btn')      
+  }
+}
+
+// quantity control
+; (function addListener() {
+  inputContainers.forEach((container) => {
+    container.addEventListener("click", add);
+  });
+})()
+
+function add({ target }) {
+  if (!target.matches(".input-quantity-control")) return;
+  const targetInput = input.find((input) => input.dataset.id === target.dataset.id);
+  let value = Number(targetInput.value);
+  if (target.matches(".quantity-plus")) {
+    targetInput.value = value + 1;
+  } else if (target.matches(".quantity-min")) {
+    if (value <= 0) return;
+    targetInput.value = value - 1;
   }
 }
 

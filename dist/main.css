@@ -806,18 +806,18 @@ main {
       width: 100%; }
     .cart .product-detail .price {
       font-weight: 600; }
-  .cart .input-content {
+  .cart .input-container {
     justify-content: flex-end; }
-    .cart .input-content > .input-quantity-control {
+    .cart .input-container > .input-quantity-control {
       width: 25px;
       height: 25px;
       border-radius: 50%;
       background-color: #F0F0F5;
       text-align: center;
       cursor: pointer; }
-      .cart .input-content > .input-quantity-control:hover {
+      .cart .input-container > .input-quantity-control:hover {
         box-shadow: 1px 1px 2px gray inset; }
-    .cart .input-content input[type="number"] {
+    .cart .input-container input[type="number"] {
       appearance: none;
       width: 53px;
       border: none;
@@ -904,7 +904,7 @@ footer {
         align-items: flex-start;
         text-align: start;
         flex: 1 1; }
-        .container .cart .product-detail .input-content {
+        .container .cart .product-detail .input-container {
           justify-content: flex-start; }
   .stepper-wrapper .step-title {
     display: block;
