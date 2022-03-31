@@ -272,9 +272,8 @@ header {
     }   
     .nav-toggle-list {
       position: absolute;
-      width:100vw;
+      width:100%;
       top:100%;    
-      left: -10%;
       z-index: 99;
       background-color: $main-background-color;     
       height: 100vh;
