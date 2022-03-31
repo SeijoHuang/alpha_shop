@@ -821,7 +821,7 @@ main {
       width: 53px;
       border: none;
       text-align: center; }
-  .cart .shipping, .cart .total {
+  .cart .shipping, .cart .total-container {
     border-top: 1px solid #F0F0F5;
     height: 70px;
     padding-top: 16px; }
