@@ -1,6 +1,8 @@
 // reset css
+@import "variable";
 html {
   box-sizing: border-box;
+  
 }
 *,
 *:before,
@@ -57,20 +59,13 @@ button {
   cursor: pointer;
 }
 
-// variable
-$main-background-color: #FFFF;
-$label-font-color: #808080;
-$step-btn-color: #F67599;
-$quantity-btn: #F0F0F5;
-$dark-dark-gray: #2A2A2A;
-$black: black;
-$white: #FFFF;
-$light-gray:#5E5E5E;
-$dark-gray: #4A4A4A;
-$pale-gray:#F0F0F5;
-$quantity-btn:#F0F0F5;
-$footer-font-color:#E5E5E5;
-$footer-background:#F6F7F8;
+
+
+
+
+h1, h2, label, p, li{
+  color: var(--title-font-color);
+}
 
 .d-none {
   display: none;
@@ -206,12 +201,13 @@ $spacers: (
 %input-style {
   width: 100%;
   height: 50px;
-  border: 1px solid $light-gray;
+  border: 1px solid var(--form-border);
   border-radius: 5px;
   font-size: 16px;
   padding: 0.8rem; 
+  background: transparent;
   &:hover, &:focus{
-    border-width: 2px;
+    border-width: 3px;
   }
 }
 %label-style {
@@ -232,7 +228,7 @@ $spacers: (
 
 // css setting star here
 body {
-  background-color: $main-background-color;
+  background-color: var(--main-background-color);
 }
 .main-container{
   margin: 0 auto;
@@ -250,7 +246,7 @@ header {
   .nav-wrapper{
     display: flex;
     a {
-      color: $dark-dark-gray;
+      color:var(--title-font-color);
       cursor: pointer;
     }
     .hamburger-box {
@@ -259,67 +255,82 @@ header {
         cursor: pointer;
       }
     }
-    // hamburger checked
-    input[type="checkbox"] {
-      display: none; 
-      &:checked ~ .nav-toggle-list {
-        transform: scale(1,1);
-        li, .tool-group {
-          opacity: 1;
-          transition: opacity .3s ease-out .2s;
-        }
-      } 
-    }   
-    .nav-toggle-list {
-      position: absolute;
-      width:100%;
-      top:100%;    
-      z-index: 99;
-      background-color: $main-background-color;     
-      height: 100vh;
-      transform: scale(1,0);
-      transform-origin: top;
-      transition: transform .3s ease-out ;
-      li, .tool-group{
-          opacity: 0;
-        }
-      li {
-        text-align: center;
-        line-height: 72px;
-        border-bottom: 1px solid $pale-gray;    
-      }   
-      .toggle-list-tool-container{
-        .tool-group {
-          display: flex;
-          justify-content: center;
-          a {
-            margin: 20px;
-          }
-        }
+    .tool-group{
+      img {
+        margin-left: 20px;
       }
     }
+    .toggle-mode{
+      content: var(--mode-logo);
+      }
+    .search-icon {
+      content: var(--search-icon);
+      }
+    .cart-icon {
+      content: var(--cart-icon);  
+      }  
+  }
+    // hamburger checked
+  input[type="checkbox"] {
+    display: none; 
+    &:checked ~ .nav-toggle-list {
+      transform: scale(1,1);
+      li, .tool-group {
+        opacity: 1;
+        transition: opacity .3s ease-out .2s;
+      }
+    } 
+  }   
+  .nav-toggle-list {
+    position: absolute;
+    width:100%;
+    top:100%;    
+    z-index: 99;
+    background-color: var(--main-background-color);     
+    height: 100vh;
+    transform: scale(1,0);
+    transform-origin: top;
+    transition: transform .3s ease-out ;
+    li, .tool-group{
+      opacity: 0;
+    }
+    li {
+      text-align: center;
+      line-height: 72px;
+      border-bottom: 1px solid $pale-gray;    
+    }
+      
+    .toggle-list-tool-container{
+      padding-top: 30px;
+      .tool-group {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }   
     .brand-container{
+      width:100px;
+      height: 20px;
       flex:1;
       padding-left: 25%;
       .brand-img{
         margin: 0 auto;
+        width:300px;
+        height: 30px;
+        .logo {
+          content: var(--logo);
+        }
       }
-      img:nth-child(1) {
-        width: 24px;
-        height: 24px;
-      }
-      img:nth-child(2) {
-        width: 105px;
-        height: 15px;
-      }
+     
     }
     .nav-tool-container {
-      display: none;
+      display: none;       
     }
     .nav-toggle-list-screen-v{
       display: none;
     }
-  }
+   
+  
 }
 .container {
   margin: 0 auto;
@@ -351,7 +362,7 @@ main {
     align-items: center;
     position: relative;
     @include stepperNum(3);
-    color: $black; 
+    color:  $label-font-color; 
     &:nth-child(3) {
       justify-content: flex-end;
     } 
@@ -361,31 +372,36 @@ main {
     &.step-active {
       > .circle{
         background-color: $dark-dark-gray;
-        color: white;
+        color: $pale-gray;
+      }
+      > p {
+        color: var(--title-font-color);
       }     
     } 
     &.checked {
       > .circle::after {
         content:"\2714";
+        color:$pale-gray;
       }
     } 
   }
  .circle {  
    width: 32px;
    height: 32px;
-   border: 1px solid $black;
+   border: 1px solid $label-font-color;
    border-radius: 23px;
    text-align: center;
  }
  .step-title {
    display: none;
    padding: 5px;
+   color: $label-font-color;
  }
  .step-line {
   position: absolute;
   height: 2px;
   width: 60px;
-  background-color: $black;
+  background-color: var(--title-font-color);
   &.first {
     left: -50%;
   }
@@ -410,6 +426,7 @@ main {
       -webkit-appearance: none; 
       background-color: transparent;
       overflow-x: hidden; 
+      color: var(--title-font-color);
     }
      &::after {
       content: "";
@@ -431,6 +448,9 @@ main {
     label{
       @extend %label-style;
     }
+    select:invalid {
+      color: $label-font-color;
+    }
     .form-row {
       width: 100%;   
       &.name-box {
@@ -448,7 +468,7 @@ main {
       flex-flow: column;
     }   
     .form-row {
-      border: 1px solid $pale-gray;
+      border: 1px solid $label-font-color;
       border-radius: 5px;
       max-width: 465px;
       height: 60px;
@@ -460,11 +480,13 @@ main {
         -webkit-appearance: none;
         width: 20px;
         height: 20px;
-        border:  1px solid $light-gray;
+        border:  1px solid var(--radio-border);
         border-radius: 50%; 
+        background-color: var(--input-radio);
         cursor: pointer;       
         &:checked {          
-          border: 6px solid $dark-gray;
+          border: 6px solid var(--radio-border);
+          background-color:white;
         }
       } 
       .label-wrapper{
@@ -473,6 +495,7 @@ main {
           cursor: pointer;
           &:nth-child(2){
             font-size: 12px;
+            color:$light-gray;
           }
         }
       }
@@ -480,7 +503,7 @@ main {
         flex-basis: 50px;
       }
       &:hover {
-        border-color: $light-gray;
+        border-color: var(--title-font-color);
         border-width: 2px;
       }
       // dhl粗體
@@ -533,6 +556,7 @@ main {
     @extend %button-style;
     &.pre-btn {
       text-align: left;
+      color: var(--title-font-color);
     }
     i {
       font-size: 20px;
@@ -547,11 +571,14 @@ main {
 }
 // cart style
 .cart {
-  border: 1px solid $pale-gray;
+  border: 1px solid var(--cart-border);
   border-radius: 5px;
   padding: 1rem 1rem 0 1rem;
-  background-color: $main-background-color;
+  background-color: var(--cart-background-color);
   width: 100%;
+  span {
+    color: var(--title-font-color);
+  }
   h1 {
     display: none;
     line-height: 88px;
@@ -606,6 +633,8 @@ main {
       width: 53px;
       border: none;
       text-align: center;
+      background: transparent;
+      color: var(--title-font-color)
     }  
   }
   .shipping, .total-container {
@@ -622,9 +651,12 @@ main {
 // footer
 footer {
   display:none;
-  background-color: $footer-background;
+  background-color: var(--footer-background);
   .footer-container{
     margin-top: 120px; 
+    .logo-img {
+      content: var(--logo);
+    }
     .items-wrapper{
       max-width: 1400px;
       margin: 0 auto;
@@ -637,7 +669,7 @@ footer {
           margin-top: 1rem;
           > a, p {
             padding-top: 2px;
-            color: $light-gray;            
+            color: var(--footer-font-color);            
           }
           &.social-media a {
              display: inline-block;
@@ -693,7 +725,7 @@ footer {
         grid-column: 11/13;
         display: flex;
         justify-content: flex-end;
-        a {
+        i {
           margin:10px;
         }
       }

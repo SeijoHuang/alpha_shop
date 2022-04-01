@@ -1,0 +1,68 @@
+// variable
+  $logo: url("/src/img/Logo_with_brand.png");
+  $label-font-color: #808080;
+  $step-btn-color: #F67599;
+  $quantity-btn: #F0F0F5;
+  $dark-dark-gray: #2A2A2A;
+  $white: #FFFF;
+  $light-gray:#5E5E5E;
+  $dark-gray: #4A4A4A;
+  $pale-gray:#F0F0F5;
+  $quantity-btn:#F0F0F5;
+  $footer-font-color: #808080;
+  $footer-background:#F6F7F8;
+  $title-font-color: #2A2A2A;
+  $form-border: #5E5E5E;
+  $input-radio: #FFFF;
+  $radio-border: #121212;
+  $main-background-color: #FFFF;
+  $cart-background-color: #FFFF;
+  $main-background-color-dark: #121212;
+  $cart-background-color-dark: #383838;
+  $title-font-color-dark:#FFFF;
+  $footer-background-dark:#333333;
+  $form-border-dark: #808080;
+  $input-radio-dark: #808080;
+  $radio-border-dark: #808080;
+  $footer-font-color-dark: #F0F0F5;
+  $logo-dark: url("/src/img/logo_dark.png");
+  $mode-logo: url("/src/img/dark_icon.png");
+  $mode-logo-dark: url("/src/img/light_icon.png");
+  $cart-icon: url("/src/img/cart.png");
+  $search-icon: url("/src/img/search.png");
+  $cart-icon-dark: url("/src/img/cart_dark.png");
+  $search-icon-dark: url("/src/img/search_dark.png");
+  $cart-border: #F0F0F5;
+  $cart-border-dark:#808080;
+
+  :root {
+  --footer-background: #{$footer-background};
+  --footer-font-color: #{$footer-font-color};
+  --title-font-color: #{$title-font-color};
+  --form-border: #{$form-border};
+  --input-radio: #{$input-radio};
+  --main-background-color:#{$main-background-color};
+  --cart-background-color: #{$cart-background-color};
+  --radio-border: #{$radio-border};
+  --logo: #{$logo};
+  --mode-logo: #{$mode-logo};
+  --search-icon: #{$search-icon};
+  --cart-icon: #{$cart-icon};
+  --cart-border: #{$pale-gray};
+}
+
+[data-mode = "dark"] {
+  --footer-background: #{$footer-background-dark};
+  --footer-font-color: #{$footer-font-color-dark};
+  --title-font-color: #{$title-font-color-dark};
+  --form-border: #{$form-border-dark};
+  --input-radio: #{$input-radio-dark};
+  --main-background-color:#{$main-background-color-dark};
+  --cart-background-color: #{$cart-background-color-dark};
+  --radio-border: #{$radio-border-dark};
+  --logo: #{$logo_dark};
+  --mode-logo: #{$mode-logo-dark};
+  --search-icon: #{$search-icon-dark};
+  --cart-icon: #{$cart-icon-dark};
+  --cart-border: #{$light-gray};
+}

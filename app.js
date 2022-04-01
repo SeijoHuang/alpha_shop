@@ -8,6 +8,7 @@ const quantity = document.querySelector("quantity")
 const input = [...document.querySelectorAll(".quantity")]
 const inputContainers = [...document.querySelectorAll(".input-container")]
 const itemPrice = [...document.querySelectorAll(".price")]
+const toggleModeBtns = document.querySelectorAll(".toggle-mode")
 
 // click next button
 function nextHandler(){
@@ -71,6 +72,10 @@ function toggleBtn(){
 ; (function addInputListener() {
   input.forEach((i) => i.addEventListener("change", inputChange))
   })()
+// toggle mode 
+; (function addInputListener() {
+  toggleModeBtns.forEach((i) => i.addEventListener("click", toggleMode))
+  })()
 
 // 點擊按鈕數量增減、單品金額增減
 function add({ target }) {
@@ -120,6 +125,18 @@ function renderTotalPrice() {
     total += itemPriceTotal;
   });
   totalBox.textContent = `$${total}`;
+}
+
+// dark mode
+function toggleMode({target}){
+  let mode = target.dataset.mode
+  if( mode === "light") {   
+    target.setAttribute('data-mode','dark')
+    document.documentElement.setAttribute('data-mode','dark')
+  } else if (mode === "dark") {   
+    target.setAttribute('data-mode', 'light')
+    document.documentElement.setAttribute('data-mode', 'light')
+  }
 }
 
 // bind the event
