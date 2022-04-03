@@ -17,12 +17,9 @@ module.exports = {
         ]
       },
       {
-        test: /\.png$/,
-        use: [
-          {loader:'resolve-url-loader'
-        }
-       ]
-      }
+        test: /\.(gif|svg|jpg|png)$/,
+        loader: "file-loader",
+      } 
     ]
   },
   plugins: [new MiniCssExtractPlugin()]
